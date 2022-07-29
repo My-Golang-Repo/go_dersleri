@@ -1,0 +1,29 @@
+{
+    "ID": 1,
+    "FirstName": "Sadagat",
+    "LastName": "Asgarov",
+    "Username": "sada",
+    "Gender": "male",
+    "Name": {
+        "Family": "Asgarovlar",
+        "Personal": "ll"
+    },
+    "Email": [
+        {
+            "ID": 1,
+            "King": "work",
+            "Address": "sada@gmail.com"
+        },
+        {
+            "ID": 2,
+            "King": "ev",
+            "Address": "sadaev@gmail.com"
+        }
+    ],
+    "Interest": [
+        {
+            "ID": 1,
+            "Name": "Kodlama"
+        }
+    ]
+}

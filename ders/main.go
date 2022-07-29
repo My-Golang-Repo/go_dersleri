@@ -21,7 +21,7 @@ type Email struct {
 
 type Interest struct {
 	ID   int
-	name string
+	Name string
 }
 
 type Person struct {
@@ -36,7 +36,7 @@ type Person struct {
 }
 
 func GetPerson(p *Person) string {
-	return p.FirstName +" "+ p.LastName
+	return p.FirstName + " " + p.LastName
 }
 
 func GetPersonEmailAdress(p *Person, i int) Email {
@@ -44,21 +44,25 @@ func GetPersonEmailAdress(p *Person, i int) Email {
 }
 
 func checkError(err error) {
-	log.Fatal(err.Error())
+	if err != nil {
+		log.Fatal(err.Error())
+		os.Exit(1)
+	}
+
 }
 
 func saveJson(filename string, key interface{}) {
 	outfile, err := os.Create(filename)
 	checkError(err)
 	encoder := json.NewEncoder(outfile)
-	err = encoder.Encode(key)
-	checkError(err)
-	outfile.Close()
+	err2 := encoder.Encode(&key)
+	checkError(err2)
+	defer outfile.Close()
 }
 
 func main() {
 
-	p := Person{
+	person := Person{
 		ID:        1,
 		FirstName: "Sadagat",
 		LastName:  "Asgarov",
@@ -73,13 +77,13 @@ func main() {
 			Email{ID: 2, King: "ev", Address: "sadaev@gmail.com"},
 		},
 		Interest: []Interest{
-			Interest{ID: 1, name: "Kodlama"},
+			Interest{ID: 1, Name: "Kodlama"},
 		},
 	}
 
 	/* res:=GetPerson(&p)
 	fmt.Println(res)
 	fmt.Println(p) */
-	saveJson("aaa.json",&p)
+	saveJson("aaa.json", person)
 
 }
